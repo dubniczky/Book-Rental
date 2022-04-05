@@ -15,10 +15,6 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-        });
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
             $table->string('title', 255);
             $table->string('authors', 255);
             $table->text('description')->nullable();
