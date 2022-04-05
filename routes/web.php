@@ -20,6 +20,11 @@ Route::get('/welcome', function () {
 Route::get('/', function () {
     return view('index');
 });
+
+Route::resource('books', 'BookController');
+
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
