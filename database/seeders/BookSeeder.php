@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use Carbon\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class BookSeeder extends Seeder
 {
@@ -13,6 +16,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Schema::dropIfExists('books');
+        User::factory()->count(90)->create();
     }
 }
