@@ -22,7 +22,7 @@ class BookFactory extends Factory
             'cover_image' => 'images/sample.png',
             'pages' => $this->faker->numberBetween(30, 800),
             'language_code' => $this->faker->boolean() ? 'hu' : 'en',
-            'isbn' => $this->faker->uniqid(),
+            'isbn' => $this->faker->isbn13(),
             'in_stock' => $this->faker->numberBetween(1, 15),
         ];
     }
