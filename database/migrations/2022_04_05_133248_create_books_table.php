@@ -17,6 +17,19 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->timestamps();
         });
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
+            $table->id();
+            $table->string('title', 255);
+            $table->string('authors', 255);
+            $table->text('description')->nullable();
+            $table->date('released_at');
+            $table->string('cover_image', 255)->nullable();
+            $table->integer('pages');
+            $table->string('language_code', 3)->default('hu');
+            $table->string('isbn', 13)->unique();
+            $table->integer('in_stock');
+            $table->timestamps();
+        });
     }
 
     /**
