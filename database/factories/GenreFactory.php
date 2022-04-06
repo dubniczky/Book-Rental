@@ -26,7 +26,7 @@ class GenreFactory extends Factory
 
         return [
             'name' => $this->faker->word(),
-            'style' => $styles[ $this->faker->numberBetween(0, sizeof($styles)) ]
+            'style' => $styles[ $this->faker->numberBetween(0, sizeof($styles)-1) ]
         ];
     }
 }
