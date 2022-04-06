@@ -3,5 +3,7 @@
 @section('title', 'Index Test')
 
 @section('content')
-    content
+    Users <strong>{{ $users }}</strong> <br>
+    Books <strong>{{ $books }}</strong>
+
 @endsection

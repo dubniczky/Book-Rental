@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,13 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', function () {
-    return view('index');
+    $users = User::count();
+    $books = Book::count();
+
+    return view('index', [
+        'users' => $users,
+        'books' => $books
+    ]);
 });
 
 Route::resource('books', BookController::class);
