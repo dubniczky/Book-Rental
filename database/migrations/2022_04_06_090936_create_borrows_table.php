@@ -15,6 +15,32 @@ class CreateBorrowsTable extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('reader_id')->
+                    unsigned()->
+                    foreign()->
+                    references('id')->
+                    on('users');
+            $table->bigInteger('book_id')->
+                    unsigned()->
+                    foreign()->
+                    references('id')->
+                    on('books');
+            $table->enum('status', [ 'PENDING', 'REJECTED', 'ACCEPTED', 'RETURNED' ]);
+            $table->dateTime('request_processed_at')->nullable();
+            $table->bigInteger('request_managed_by')->
+                    unsigned()->
+                    nullable()->                    
+                    foreign()->
+                    references('id')->
+                    on('users');
+            $table->dateTime('deadline')->nullable();
+            $table->dateTime('returned_at')->nullable();
+            $table->bigInteger('return_managed_by')->
+                    unsigned()->
+                    nullable()->                    
+                    foreign()->
+                    references('id')->
+                    on('users');
             $table->timestamps();
         });
     }
