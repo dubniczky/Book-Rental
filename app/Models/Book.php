@@ -26,4 +26,8 @@ class Book extends Model
         'pages' => 'integer',
         'in_stock' => 'integer',
     ];
+
+    public function genres() {
+        return $this->hasMany(Genre::class);
+    }
 }
