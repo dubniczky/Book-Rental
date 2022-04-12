@@ -38,7 +38,7 @@ class BorrowFactory extends Factory
         );
 
         # Get random state
-        $state = $this->faker->random_int(0, 3);
+        $state = $this->faker->numberBetween(0, 3);
 
 
         switch ($state) {
