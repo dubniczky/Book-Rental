@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use App\Models\Borrow;
 
 class BorrowSeeder extends Seeder
 {
@@ -13,6 +15,7 @@ class BorrowSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Schema::dropIfExists('borrows');
+        Borrow::factory()->count(150)->create();
     }
 }
