@@ -43,4 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_librarian' => 'boolean',
     ];
+
+    public function borrows() {
+        return $this->hasMany(Borrow::class, 'reader_id');
+    }
+
+    public function requests() {
+        return $this->hasMany(Borrow::class, 'request_managed_by');
+    }
+
+    public function returns() {
+        return $this->hasMany(Borrow::class, 'return_managed_by');
+    }
 }
