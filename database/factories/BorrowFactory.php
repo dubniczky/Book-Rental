@@ -42,11 +42,36 @@ class BorrowFactory extends Factory
 
 
         switch ($state) {
-            case 0:
-                return 
+            case 0: return [ # PENDING
+                'status' => 'PENDING',
+                'reader_id' => $reader,
+                'book_id' => $book
+            ];
+            case 1: return [ # REJECTED
+                'status' => 'REJECTED',
+                'reader_id' => $reader,
+                'book_id' => $book,
+                'request_processed_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+                'request_managed_by' => $request_manager
+            ];
+            case 2: return [ # ACCEPTED
+                'status' => 'ACCEPTED',
+                'reader_id' => $reader,
+                'book_id' => $book,
+                'request_processed_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+                'request_managed_by' => $request_manager,
+                'deadline' => $this->faker->dateTimeBetween('-5 days', '+3 months')
+            ];
+            case 3: return [ # RETURNED
+                'status' => 'RETURNED',
+                'reader_id' => $reader,
+                'book_id' => $book,
+                'request_processed_at' => $this->faker->dateTimeBetween('-1 month', '-5 day'),
+                'request_managed_by' => $request_manager,
+                'deadline' => $this->faker->dateTimeBetween('-5 days', '+3 months'),
+                'return_managed_by' => $return_manager,
+                'returned_at' => $this->faker->dateTimeBetween('-5 days', 'now')
+            ];
         }
-        return [
-            //
-        ];
     }
 }
