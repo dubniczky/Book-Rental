@@ -14,7 +14,6 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        Genre::dropIfExists('genre');
         Genre::factory()->count(15)->create();
     }
 }

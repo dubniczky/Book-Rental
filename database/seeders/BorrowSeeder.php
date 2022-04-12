@@ -15,7 +15,6 @@ class BorrowSeeder extends Seeder
      */
     public function run()
     {
-        Schema::dropIfExists('borrows');
         Borrow::factory()->count(150)->create();
     }
 }

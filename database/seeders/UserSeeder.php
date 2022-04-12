@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        Schema::dropIfExists('users');
         User::factory()->count(1)->create([
             'is_librarian' => true
         ]);

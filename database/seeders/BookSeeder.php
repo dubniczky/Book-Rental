@@ -15,7 +15,6 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        Schema::dropIfExists('books');
         Book::factory()->count(90)->create();
     }
 }
