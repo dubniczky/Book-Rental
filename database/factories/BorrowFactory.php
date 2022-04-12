@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Book;
+use App\Models\User;
 
 class BorrowFactory extends Factory
 {
@@ -13,6 +15,8 @@ class BorrowFactory extends Factory
      */
     public function definition()
     {
+        $readers = User::where('is_librarian', '=', '0')->get();
+
         return [
             //
         ];
