@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Genre extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    public function genres() {
-        return $this->hasOne(Genre::class);
+    public function books() {
+        return $this->belongsToMany(Book::class);
     }
 }
