@@ -41,6 +41,10 @@
                 Available: {{ $available }} / {{ $book['in_stock'] }}
             </div>
 
+            @if ($user && !$user['is_librarian'])
+                {{ $status }} {{-- TODO --}}
+            @endif
+
             <p class="text-justify mt-5">
                 {{ $book['description'] }}
             </p>

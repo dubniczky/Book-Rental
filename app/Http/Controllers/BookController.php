@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use App\Models\Borrow;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -63,9 +65,12 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        $user = Auth::user();
         return view('book.show', [
             'book' => $book,
-            'available' => $book->available_count()
+            'available' => $book->available_count(),
+            'user' => $user,
+            'status' => $user ? Borrow::active_user_book($user, $book) : false
         ]);
     }
 

@@ -28,4 +28,11 @@ class Borrow extends Model
     public static function active_rentals() {
         return Borrow::where('status', '=', 'ACCEPTED');
     }
+
+    public static function active_user_book($user, $book) {
+        $borrow = Borrow::where('reader_id', $user['id'])->
+                          where('book_id', $book['id'])->
+                          where('status', '=', 'ACCEPTED')->first();
+        return !!$borrow;
+    }
 }
