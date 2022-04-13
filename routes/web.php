@@ -4,6 +4,8 @@ use App\Http\Controllers\BookController;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::get('/', function () {
 });
 
 Route::resource('books', BookController::class);
+Route::resource('genres', BookController::class);
 
 
 
