@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\BookController;
-use App\Models\Book;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
+use App\Models\Book;
+use App\Models\User;
+use App\Models\Genre;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +28,12 @@ Route::get('/welcome', function () {
 Route::get('/', function () {
     $users = User::count();
     $books = Book::count();
+    $genres = Genre::count();
 
     return view('index', [
         'users' => $users,
-        'books' => $books
+        'books' => $books,
+        'genres' => $genres
     ]);
 });
 

@@ -4,6 +4,7 @@
 
 @section('content')
     Users <strong>{{ $users }}</strong> <br>
-    Books <strong>{{ $books }}</strong>
+    Books <strong>{{ $books }}</strong> <br>
+    Genres <strong>{{ $genres }}</strong>
 
 @endsection
