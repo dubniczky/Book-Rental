@@ -18,8 +18,7 @@ class GenreSeeder extends Seeder
         Genre::factory()->count(15)->create();
 
         $genres = Genre::all();
-        $gen_count = count($genres);
-        Book::all()->each(function($book) {
+        Book::all()->each(function($book) use($genres) {
             $count = rand(1, 5);
             $book->genres()->attach(
                 $genres->random( $count )->pluck('id')->toArray()
