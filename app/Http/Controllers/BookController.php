@@ -6,6 +6,8 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 
+use Illuminate\Http\Request;
+
 class BookController extends Controller
 {
     /**
@@ -13,9 +15,20 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        $books = Book::all();
+        $books = null;
+        if ($req->input('q')) {
+            $search = $req->input('q');
+            $books = Book::where(function ($query) use($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                      ->orWhere('author', 'like', '%' . $search . '%');
+            })->get();
+        }
+        else {
+            $books = Book::all();
+        }
+        
         return view('book.list', [
             'books' => $books
         ]);
