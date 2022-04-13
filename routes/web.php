@@ -31,12 +31,14 @@ Route::get('/', function () {
     $book_count = Book::count();
     $genre_count = Genre::count();
     $accepted_borrow_count = Borrow::active_rentals()->count();
+    $genres = Genre::all();
 
     return view('index', [
         'user_count' => $user_count,
         'book_count' => $book_count,
         'genre_count' => $genre_count,
-        'accepted_borrow_count' => $accepted_borrow_count
+        'accepted_borrow_count' => $accepted_borrow_count,
+        'genres' => $genres
     ]);
 });
 
