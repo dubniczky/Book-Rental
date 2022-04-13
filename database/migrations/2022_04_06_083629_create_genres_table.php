@@ -27,6 +27,7 @@ class CreateGenresTable extends Migration
                 'dark'
             ]);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
