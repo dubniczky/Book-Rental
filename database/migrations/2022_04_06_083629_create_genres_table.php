@@ -29,6 +29,25 @@ class CreateGenresTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        # Create multi to multi connection table for book and genre
+        Schema::create('book_genre', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('book_id')->
+                    unsigned()->
+                    foreign()->
+                    references('id')->
+                    on('books')->
+                    onDelete('cascade');
+            $table->bigInteger('genre_id')->
+                    unsigned()->
+                    foreign()->
+                    references('id')->
+                    on('genre')->
+                    onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
