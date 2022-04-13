@@ -35,4 +35,8 @@ class Book extends Model
     public function borrows() {
         return $this->hasMany(Borrow::class);
     }
+
+    public function available_count() {
+        return $this->hasMany(Borrow::class)->where('status', '=', 'ACCEPTED')->count();
+    }
 }

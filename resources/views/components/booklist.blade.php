@@ -13,7 +13,7 @@
                         <h5 class="card-title">{{ $book['title'] }}</h5>
                         <p class="card-text">{{ Str::substr($book['description'], 0, 200) }}...</p>
                         <p class="card-text"><small class="text-muted">{{ $book['in_stock'] }} available for rent</small></p>
-                        <a href="/book/details/{{ $book['id'] }}" class="btn btn-primary">Details</a>
+                        <a href="/books/{{$book['id']}}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             </div>
