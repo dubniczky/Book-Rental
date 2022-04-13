@@ -46,7 +46,6 @@ class CreateGenresTable extends Migration
                     on('genre')->
                     onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -58,5 +57,6 @@ class CreateGenresTable extends Migration
     public function down()
     {
         Schema::dropIfExists('genres');
+        Schema::dropIfExists('book_genre');
     }
 }
