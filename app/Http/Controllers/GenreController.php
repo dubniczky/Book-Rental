@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
 use App\Models\Genre;
+use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
@@ -13,9 +14,23 @@ class GenreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        //
+        # Error: no name given
+        $name = $req->input('name');
+        if (!$name) {
+            return abort(400);
+        }
+
+        # Error: genre does not exist
+        $genre = Genre::find_by_name($name);
+        if (!$genre) {
+            return abort(404);
+        }
+        
+        return view('genre.list', [
+            'genre' => $genre,
+        ]);
     }
 
     /**
@@ -47,7 +62,12 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        $books = $genre->books();
+        
+        return view('genre.list', [
+            'genre' => $genre,
+            'books' => $books
+        ]);
     }
 
     /**

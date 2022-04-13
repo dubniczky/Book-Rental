@@ -18,4 +18,8 @@ class Genre extends Model
     public function books() {
         return $this->belongsToMany(Book::class);
     }
+
+    public static function find_by_name($name) {
+        return Genre::query()->where('name', '=', $name)->first();
+    }
 }

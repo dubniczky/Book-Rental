@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +43,7 @@ Route::get('/', function () {
 });
 
 Route::resource('books', BookController::class);
-Route::resource('genres', BookController::class);
+Route::resource('genres', GenreController::class);
 
 
 
