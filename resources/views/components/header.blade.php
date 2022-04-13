@@ -8,15 +8,17 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/welcome">Features</a>
+                <a class="nav-link" href="/books">Books</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link" href="/genres">Genres</a>
             </li>
         </ul>
+
+        <a class="btn btn-primary" href="/login">Login</a>
     </div>
     </div>
 </nav>
