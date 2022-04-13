@@ -24,4 +24,8 @@ class Borrow extends Model
     public function return_manager() {
         return $this->belongsTo(User::class, 'return_manager_id');
     }
+
+    public static function active_rentals() {
+        return Borrow::where('status', '=', 'ACCEPTED');
+    }
 }

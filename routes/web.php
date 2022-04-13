@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Genre;
+use App\Models\Borrow;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +27,16 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', function () {
-    $users = User::count();
-    $books = Book::count();
-    $genres = Genre::count();
+    $user_count = User::count();
+    $book_count = Book::count();
+    $genre_count = Genre::count();
+    $accepted_borrow_count = Borrow::active_rentals()->count();
 
     return view('index', [
-        'users' => $users,
-        'books' => $books,
-        'genres' => $genres
+        'user_count' => $user_count,
+        'book_count' => $book_count,
+        'genre_count' => $genre_count,
+        'accepted_borrow_count' => $accepted_borrow_count
     ]);
 });
 
