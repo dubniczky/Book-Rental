@@ -15,6 +15,12 @@ class Borrow extends Model
         'status'
     ];
 
+    protected $casts = [
+        'request_processed_at' => 'date',
+        'returned_at' => 'date',
+        'deadline' => 'date',
+    ];
+
     public function book() {
         return $this->belongsTo(Book::class, 'book_id');
     }
