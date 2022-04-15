@@ -30,11 +30,11 @@ class Borrow extends Model
     }
 
     public function request_manager() {
-        return $this->belongsTo(User::class, 'request_manager_id');
+        return $this->belongsTo(User::class, 'request_managed_by');
     }
 
     public function return_manager() {
-        return $this->belongsTo(User::class, 'return_manager_id');
+        return $this->belongsTo(User::class, 'return_managed_by');
     }
 
     public static function active_rentals() {
