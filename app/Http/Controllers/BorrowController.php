@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBorrowRequest;
 use App\Http\Requests\UpdateBorrowRequest;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 use App\Models\Borrow;
+use App\Models\Book;
 
 class BorrowController extends Controller
 {
@@ -23,9 +29,35 @@ class BorrowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $req)
     {
-        //
+        $user = Auth::user();
+        if (!$user) {
+            return abort(403);
+        }
+
+        $book_id = $req->input('book');
+        if (!$book_id) {
+            return abort(400);
+        }
+
+        $book = Book::find($book_id);
+        if (!$book) {
+            return abort(404);
+        }
+
+        if (Borrow::active_user_book($user, $book)) {
+            return abort(403);
+        }
+
+        $borrow = Borrow::create([
+            'reader_id' => $user['id'],
+            'book_id' => $book_id,
+            'status' => 'PENDING'
+        ]);
+        $borrow->save();
+
+        return redirect("/books/" . $book_id);
     }
 
     /**
@@ -34,9 +66,9 @@ class BorrowController extends Controller
      * @param  \App\Http\Requests\StoreBorrowRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBorrowRequest $request)
+    public function store(StoreBorrowRequest $req)
     {
-        //
+        
     }
 
     /**

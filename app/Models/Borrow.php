@@ -9,6 +9,12 @@ class Borrow extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'reader_id',
+        'book_id',
+        'status'
+    ];
+
     public function book() {
         return $this->belongsTo(Book::class, 'book_id');
     }
@@ -32,7 +38,7 @@ class Borrow extends Model
     public static function active_user_book($user, $book) {
         $borrow = Borrow::where('reader_id', $user['id'])->
                           where('book_id', $book['id'])->
-                          where('status', '=', 'ACCEPTED')->first();
+                          whereIn('status', ['ACCEPTED','PENDING'])->first();
         return !!$borrow;
     }
 }

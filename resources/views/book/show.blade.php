@@ -41,8 +41,15 @@
                 Available: {{ $available }} / {{ $book['in_stock'] }}
             </div>
 
+            {{-- User Menu --}}
             @if ($user && !$user['is_librarian'])
-                {{ $status }} {{-- TODO --}}
+                @if ($status)
+                <p>You have an active rental for this book.</p>
+                <a onclick="alert('You already have a rental for this book!')" class="btn btn-primary">Rent</a>
+                @else
+                <p>You have no current rental for this book.</p>
+                <a href="/borrows/create?book={{ $book['id'] }}" class="btn btn-primary">Rent</a>
+                @endif
             @endif
 
             <p class="text-justify mt-5">

@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 use App\Models\Book;
 use App\Models\User;
@@ -44,6 +47,7 @@ Route::get('/', function () {
 
 Route::resource('books', BookController::class);
 Route::resource('genres', GenreController::class);
+Route::resource('borrows', BorrowController::class);
 
 
 
