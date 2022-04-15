@@ -79,7 +79,12 @@ class BorrowController extends Controller
      */
     public function show(Borrow $borrow)
     {
-        //
+        return view('borrow.show', [
+            'borrow' => $borrow,
+            'book' => $borrow->book,
+            'reader' => $borrow->reader,
+            'expired' => $borrow['status'] == 'ACCEPTED' && $borrow['deadline'] < time()
+        ]);
     }
 
     /**
