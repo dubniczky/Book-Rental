@@ -1,4 +1,6 @@
 <!-- Header -->
+@php ($user = Illuminate\Support\Facades\Auth::user())
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">BookRent</a>
@@ -16,9 +18,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="/genres">Genres</a>
             </li>
+
+            @if($user)
+            <li class="nav-item">
+                <a class="nav-link" href="/user/rentals">My Rentals</a>
+            </li>
+            @endif
         </ul>
 
+        @if($user)
+        <a class="btn btn-primary" href="/logout">Logout</a>
+        @else
         <a class="btn btn-primary" href="/login">Login</a>
+        @endif
     </div>
     </div>
 </nav>
