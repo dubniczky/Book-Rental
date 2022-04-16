@@ -55,6 +55,11 @@
             {{-- Librarian Menu --}}
             @if ($user && $user['is_librarian'])
                 <a href="/books/{{ $book['id'] }}/edit" class="btn btn-primary">Edit</a>
+                <form action="{{ route('books.destroy', ['book'=>$book['id']]) }}" method="POST">
+                    @csrf
+                    @method('delete') {{-- ?? --}}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
             @endif
 
             <p class="text-justify mt-5">
