@@ -19,7 +19,7 @@ class GenrePolicy
      */
     public function view(User $user)
     {
-        return true; // Any user
+        return $user['is_librarian'];
     }
 
     /**

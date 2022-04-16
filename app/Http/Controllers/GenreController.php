@@ -14,22 +14,11 @@ class GenreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function index()
     {
-        # Error: no name given
-        $name = $req->input('name');
-        if (!$name) {
-            return abort(400);
-        }
-
-        # Error: genre does not exist
-        $genre = Genre::find_by_name($name);
-        if (!$genre) {
-            return abort(404);
-        }
-        
+        $this->authorize('view', Book::class);
         return view('genre.list', [
-            'genre' => $genre,
+            'genres' => Genre::all(),
         ]);
     }
 
