@@ -64,7 +64,7 @@ class GenreController extends Controller
     {
         $books = $genre->books();
         
-        return view('genre.list', [
+        return view('genre.show', [
             'genre' => $genre,
             'books' => $books
         ]);
