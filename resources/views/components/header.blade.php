@@ -1,5 +1,6 @@
 <!-- Header -->
 @php ($user = Illuminate\Support\Facades\Auth::user())
+@php ($is_libr = ($user) ? $user['is_librarian'] : false)
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -22,6 +23,12 @@
             @if($user)
             <li class="nav-item">
                 <a class="nav-link" href="/user/rentals">My Rentals</a>
+            </li>
+            @endif
+
+            @if($is_libr)
+            <li class="nav-item">
+                <a class="nav-link" href="/books/create">Add Book</a>
             </li>
             @endif
         </ul>
