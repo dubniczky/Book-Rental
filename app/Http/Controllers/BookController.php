@@ -153,13 +153,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        error_log('#1');
         $this->authorize('delete', Book::class);
-        error_log('#2');
-
         $book->delete();
-        error_log('#3');
-
         return redirect('/');
     }
 }
