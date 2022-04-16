@@ -6,12 +6,26 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Models\Borrow;
+use App\Models\Genre;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    static function get_validator() {
+        return [
+            'title' => 'required|max:255',
+            'authors' => 'required|max:255',
+            'released_at' => 'required|date|before:now',
+            'pages' => 'required|integer|gt:0',
+            'isbn' => 'required|regex:/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/i',
+            'description' => 'present',
+            'genres' => 'required|array',
+            'in_stock' => 'required|integer|gte:0',
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +57,11 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Book::class);
+
+        return view('book.create', [
+            'genres' => Genre::all()
+        ]);
     }
 
     /**
@@ -54,7 +72,20 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        //error_log($request);
+        $this->authorize('create', Book::class);
+        // https://laravel.com/docs/9.x/validation
+        $val = $request->validate(BookController::get_validator());
+
+        error_log( print_r($val, TRUE) );
+
+        
+        $book = Book::create($val);
+        $book['cover_img'] = 'images/sample.png';
+        $book->save();
+        //error_log($book);
+
+        return redirect('/');
     }
 
     /**
