@@ -52,6 +52,11 @@
                 @endif
             @endif
 
+            {{-- Librarian Menu --}}
+            @if ($user && $user['is_librarian'])
+                <a href="/books/{{ $book['id'] }}/edit" class="btn btn-primary">Edit</a>
+            @endif
+
             <p class="text-justify mt-5">
                 {{ $book['description'] }}
             </p>

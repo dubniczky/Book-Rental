@@ -116,8 +116,14 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
+        $this->authorize('update', Book::class);
+
         return view('book.edit', [
-            'book' => $book
+            'genres' => Genre::all(),
+            'id' => $book['id'],
+            'init' => function($name) use ($book) {
+                return $book[$name];
+            }
         ]);
     }
 
@@ -130,7 +136,13 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $this->authorize('update', Book::class);
+        $val = $request->validate(BookController::get_validator());
+
+        $book->update($val);
+        $book->save();
+
+        return redirect()->route('book.show', ['book' => $book['id']]);
     }
 
     /**
