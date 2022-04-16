@@ -3,7 +3,7 @@
        name="{{ $name }}"
        class="form-control @error($name) is-invalid @enderror"
        required
-       value="{{ old($name) }}">
+       value="{{ $init($name) }}">
 
 @error($name)
 <div class="invalid-feedback">

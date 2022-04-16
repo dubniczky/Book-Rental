@@ -7,16 +7,7 @@
     <form action="/books" method="POST">
         @csrf
 
-        @include('book.formfield', [ 'title'=>'Title', 'name'=>'title', 'type'=>'text' ])
-        @include('book.formfield', [ 'title'=>'Authors', 'name'=>'authors', 'type'=>'text' ])
-        @include('book.formfield', [ 'title'=>'Release Date', 'name'=>'released_at', 'type'=>'date' ])
-        @include('book.formfield', [ 'title'=>'Pages', 'name'=>'pages', 'type'=>'number' ])
-        @include('book.formfield', [ 'title'=>'ISBN', 'name'=>'isbn', 'type'=>'text' ])
-
-        @include('book.formarea', [ 'title'=>'description', 'name'=>'description' ])
-        @include('book.formgenres', [ 'genres'=>$genres ])
-
-        @include('book.formfield', [ 'title'=>'In Stock', 'name'=>'in_stock', 'type'=>'number' ])
+        @include('book.form', ['genres' => $genres, 'init'=>$init])
 
         <input type="submit" class="btn btn-success" value="Add Book">
         <input type="reset" class="btn btn-danger" value="Reset">

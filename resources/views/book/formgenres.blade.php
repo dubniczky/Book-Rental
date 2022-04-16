@@ -2,7 +2,10 @@
 <div class="mb-3">
     @foreach ($genres as $g)
     <div class="btn btn-outline-{{$g['style']}}">
-        <input type="checkbox" name="genres[]" value={{$g['id']}}>
+        <input type="checkbox"
+               name="genres[]"
+               value={{$g['id']}}
+               checked="{{ $init('genres') }}">
         <label>{{$g['name']}}</label>
     </div>
     @endforeach

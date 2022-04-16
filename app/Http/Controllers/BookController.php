@@ -60,7 +60,10 @@ class BookController extends Controller
         $this->authorize('create', Book::class);
 
         return view('book.create', [
-            'genres' => Genre::all()
+            'genres' => Genre::all(),
+            'init' => function($name) {
+                return old($name);
+            }
         ]);
     }
 
