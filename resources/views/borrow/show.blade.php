@@ -72,6 +72,27 @@
         @endif
 
     </table>
+
+    @if ($user['is_librarian'])
+        <form action="/borrows/{{ $borrow['id'] }}" method="post">
+            @csrf
+            @method('patch')
+
+            @include('components.dropdown', [
+                'title'=>'Status',
+                'name'=>'status',
+                'init'=>$init,
+                'options'=> ['PENDING','ACCEPTED','REJECTED','RETURNED']
+            ])
+            @include('components.formfield', [
+                'title'=>'Deadline',
+                'name'=>'deadline',
+                'type'=>'date',
+                'init'=>$init
+            ])
+            
+        </form>
+    @endif
 </div>
 
 @endsection

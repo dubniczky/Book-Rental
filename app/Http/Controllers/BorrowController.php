@@ -113,7 +113,10 @@ class BorrowController extends Controller
             'book' => $borrow->book,
             'reader' => $borrow->reader,
             'expired' => $borrow['status'] == 'ACCEPTED' && $borrow['deadline'] < time(),
-            'user' => $user
+            'user' => $user,
+            'init' => function($name) use ($borrow) {
+                return $borrow[$name];
+            }
         ]);
     }
 
