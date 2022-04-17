@@ -83,6 +83,17 @@ Route::get('/user/rentals', function() {
     ]);
 })->middleware('auth');
 
+Route::get('/profile', function() {
+    $user = Auth::user();
+    if (!$user) {
+        return abort(403);
+    }
+
+    return view('profile', [
+        'user' => $user
+    ]);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

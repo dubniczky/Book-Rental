@@ -42,11 +42,15 @@
             @endif
         </ul>
 
-        @if($user)
-        <a class="btn btn-primary" href="/logout">Logout</a>
-        @else
-        <a class="btn btn-primary" href="/login">Login</a>
-        @endif
+        <li class="nav-item px-3">
+            @if($user)
+            <a class="btn btn-primary px-2" href="/profile">Profile</a>
+            <a class="btn btn-danger" href="/logout">Logout</a>
+            @else
+            <a class="btn btn-danger" href="/login">Login</a>
+            @endif
+        </li>
+        
     </div>
     </div>
 </nav>
