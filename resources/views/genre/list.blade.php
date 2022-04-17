@@ -16,7 +16,7 @@
         <tr>
             <td>{{$g['name']}}</td>
             <td>{{$g['style']}}</td>
-            <td><a class="btn btn-primary" href="/genres/{{$g['name']}}/edit">edit</a></td>
+            <td><a class="btn btn-primary" href="/genres/{{$g['id']}}/edit">edit</a></td>
             <td>
                 <form action="{{ route('genres.destroy', ['genre'=>$g['id']]) }}">
                     @csrf
