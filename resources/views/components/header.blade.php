@@ -44,7 +44,7 @@
             <a class="btn btn-primary px-2" href="/profile">Profile</a>
             <a class="btn btn-danger" href="/logout">Logout</a>
             @else
-            <a class="btn btn-danger" href="/login">Login</a>
+            <a class="btn btn-success" href="/login">Login</a>
             @endif
         </li>
         
