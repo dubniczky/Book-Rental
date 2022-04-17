@@ -38,10 +38,10 @@
             <td>{{ $borrow['status'] }}</td>
         </tr>
         <tr>
-            <td>Deadline</td>            
-            <td class="{{ $expired ? 'text-danger' : '' }}">
+            <td>Deadline</td>
+            <td>
                 @if ($borrow['deadline'])
-                {{ $borrow['deadline']->format('d/m/Y') }}
+                {{ $borrow['deadline']->format('d/m/Y') }} {{ $expired ? '(OVERDUE)' : '' }}
                 @endif
             </td>            
         </tr>
