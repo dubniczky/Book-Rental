@@ -30,6 +30,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/books/create">Add Book</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/genres/create">Add Genre</a>
+            </li>
             @endif
         </ul>
 
