@@ -25,10 +25,6 @@ use App\Models\Borrow;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
 Route::get('/', function () {
     $user_count = User::count();
     $book_count = Book::count();
@@ -96,5 +92,4 @@ Route::get('/profile', function() {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
