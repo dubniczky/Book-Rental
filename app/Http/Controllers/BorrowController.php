@@ -103,11 +103,17 @@ class BorrowController extends Controller
      */
     public function show(Borrow $borrow)
     {
+        $user = Auth::user();
+        if (!$user['is_librarian'] && $user['id'] != $borrow['reader_id']) {
+            return abort(403);
+        }
+
         return view('borrow.show', [
             'borrow' => $borrow,
             'book' => $borrow->book,
             'reader' => $borrow->reader,
-            'expired' => $borrow['status'] == 'ACCEPTED' && $borrow['deadline'] < time()
+            'expired' => $borrow['status'] == 'ACCEPTED' && $borrow['deadline'] < time(),
+            'user' => $user
         ]);
     }
 
