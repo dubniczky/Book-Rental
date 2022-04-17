@@ -4,8 +4,9 @@
 
 <div class="container-sm">
     <h1 class="mt-5">Edit Book</h1>
-    <form action="/books/{{$id}}" method="PATCH">
+    <form action="/books/{{$id}}" method="post">
         @csrf
+        @method('patch')
 
         @include('book.form', ['genres' => $genres, 'init'=>$init])
 
