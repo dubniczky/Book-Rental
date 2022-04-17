@@ -10,6 +10,11 @@ class BorrowPolicy
 {
     use HandlesAuthorization;
 
+    public function viewAll(User $user)
+    {
+        return $user['is_librarian'];
+    }
+
     /**
      * Determine whether the user can view the model.
      *

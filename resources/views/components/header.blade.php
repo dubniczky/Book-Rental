@@ -21,9 +21,15 @@
             </li>
 
             @if($user)
-            <li class="nav-item">
-                <a class="nav-link" href="/user/rentals">My Rentals</a>
-            </li>
+                @if ($is_libr)
+                <li class="nav-item">
+                    <a class="nav-link" href="/borrows">Rentals</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/rentals">My Rentals</a>
+                </li>
+                @endif                
             @endif
 
             @if($is_libr)

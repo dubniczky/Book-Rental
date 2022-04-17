@@ -30,7 +30,7 @@ class GenrePolicy
      */
     public function create(User $user)
     {
-        return $user['is_librarian'];
+        return !!$user;
     }
 
     /**

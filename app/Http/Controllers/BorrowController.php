@@ -21,7 +21,31 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAll', Borrow::class);
+
+        $b_pending = Borrow::where('status', 'PENDING')->get();
+
+        $b_intime = Borrow::where('status', 'ACCEPTED')->
+                            where('deadline', '>=', now())->
+                            get();
+
+        $b_overdue = Borrow::where('status', 'ACCEPTED')->
+                             where('deadline', '<', now())->
+                             get();
+
+        $b_rejected = Borrow::where('status', 'REJECTED')->
+                              get();
+
+        $b_returned = Borrow::where('status', 'RETURNED')->
+                              get();
+
+        return view('borrow.list', [
+            'b_pending' => $b_pending,
+            'b_intime' => $b_intime,
+            'b_overdue' => $b_overdue,
+            'b_rejected' => $b_rejected,
+            'b_returned' => $b_returned,
+        ]);
     }
 
     /**
