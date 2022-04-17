@@ -84,6 +84,18 @@
                 'init'=>$init,
                 'options'=> ['PENDING','ACCEPTED','REJECTED','RETURNED']
             ])
+
+            <span>
+                <input type="submit" class="btn btn-success" value="Save">
+                <input type="reset" class="btn btn-danger" value="Reset">
+            </span>
+            
+        </form>
+
+        <form action="/borrows/{{ $borrow['id'] }}" method="post">
+            @csrf
+            @method('patch')
+
             @include('components.formfield', [
                 'title'=>'Deadline',
                 'name'=>'deadline',
@@ -91,10 +103,10 @@
                 'init'=>$init
             ])
 
-            <div class="mt-3">
+            <span>
                 <input type="submit" class="btn btn-success" value="Save">
                 <input type="reset" class="btn btn-danger" value="Reset">
-            </div>
+            </span>
             
         </form>
     @endif

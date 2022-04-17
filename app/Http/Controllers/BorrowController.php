@@ -163,10 +163,33 @@ class BorrowController extends Controller
     public function update(UpdateBorrowRequest $request, Borrow $borrow)
     {
         $this->authorize('update', Borrow::class);
+        $user = Auth::user();
         $val = $request->validate(BorrowController::get_validator());
 
         // Update deadline
-        $borrow['deadline'] = $val['deadline'];
+        if (isset($val['deadline'])) {
+            $borrow['deadline'] = $val['deadline'];
+        }
+
+        // Update state
+        if (isset($val['status'])) {
+            //Updated from pending
+            if ($borrow['status'] == 'PENDING' && $borrow['status'] != $val['status'] ) {
+                $borrow['status'] = $val['status'];
+                $borrow['request_processed_at'] = now();
+                $borrow['request_managed_by'] = $user['id'];
+            }
+            //Updated to returned
+            else if ($borrow['status'] != 'RETURNED' && $val['status'] == 'RETURNED' ) {
+                $borrow['status'] = 'RETURNED';
+                $borrow['returned_at'] = now();
+                $borrow['return_managed_by'] = $user['id'];
+            }
+            else
+            {
+                $borrow['status'] = $val['status'];
+            }
+        }        
 
         $borrow->save();
 
