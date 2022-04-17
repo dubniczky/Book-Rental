@@ -101,7 +101,15 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        //
+        $this->authorize('update', Genre::class);
+
+        return view('genre.edit', [
+            'id' => $genre['id'],
+            'styles' => GenreController::$styles,
+            'init' => function($name) use($genre) {
+                return $genre[$name];
+            }
+        ]);
     }
 
     /**
@@ -113,7 +121,13 @@ class GenreController extends Controller
      */
     public function update(UpdateGenreRequest $request, Genre $genre)
     {
-        //
+        $this->authorize('update', Genre::class);
+        $val = $request->validate(GenreController::get_validator());
+
+        $genre->update($val);
+        $genre->save();
+
+        return redirect()->route('genres.show', ['genre' => $genre['id']]);
     }
 
     /**
