@@ -138,6 +138,8 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        $this->authorize('delete', Genre::class);
+        $genre->delete();
+        return redirect()->route('genres.index');
     }
 }

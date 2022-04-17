@@ -18,7 +18,7 @@
             <td>{{$g['style']}}</td>
             <td><a class="btn btn-primary" href="/genres/{{$g['id']}}/edit">edit</a></td>
             <td>
-                <form action="{{ route('genres.destroy', ['genre'=>$g['id']]) }}">
+                <form action="{{ route('genres.destroy', ['genre'=>$g['id']]) }}" method="post">
                     @csrf
                     @method('delete')
                     <input type="submit" class="btn btn-danger" value="Delete">
