@@ -47,4 +47,10 @@ class Borrow extends Model
                           whereIn('status', ['ACCEPTED','PENDING'])->first();
         return !!$borrow;
     }
+    
+    public static function is_date_property($name) {
+        return $name == 'deadline' || 
+               $name == 'request_processed_at' ||
+               $name == 'returned_at';
+    }
 }

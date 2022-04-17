@@ -8,12 +8,29 @@ use App\Http\Requests\UpdateBorrowRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rule;
 
 use App\Models\Borrow;
 use App\Models\Book;
 
 class BorrowController extends Controller
 {
+    static function get_validator() {
+        return [
+            'status' => [
+                Rule::in(BorrowController::$states),
+            ],
+            'deadline' => "date"
+        ];
+    }
+
+    static $states = [
+        'PENDING',
+        'ACCEPTED',
+        'REJECTED',
+        'RETURNED'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -117,6 +134,9 @@ class BorrowController extends Controller
             'expired' => ($borrow['deadline']) ? $borrow['deadline']->isPast() : false,
             'user' => $user,
             'init' => function($name) use ($borrow) {
+                if (Borrow::is_date_property($name)) {
+                    return ($borrow[$name]) ? $borrow[$name]->format('Y-m-d') : '';
+                }
                 return $borrow[$name];
             }
         ]);
@@ -142,7 +162,15 @@ class BorrowController extends Controller
      */
     public function update(UpdateBorrowRequest $request, Borrow $borrow)
     {
-        //
+        $this->authorize('update', Borrow::class);
+        $val = $request->validate(BorrowController::get_validator());
+
+        // Update deadline
+        $borrow['deadline'] = $val['deadline'];
+
+        $borrow->save();
+
+        return redirect()->route('borrows.show', ['borrow' => $borrow['id']]);
     }
 
     /**

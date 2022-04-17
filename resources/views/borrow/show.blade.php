@@ -90,6 +90,11 @@
                 'type'=>'date',
                 'init'=>$init
             ])
+
+            <div class="mt-3">
+                <input type="submit" class="btn btn-success" value="Save">
+                <input type="reset" class="btn btn-danger" value="Reset">
+            </div>
             
         </form>
     @endif
