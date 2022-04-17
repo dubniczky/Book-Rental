@@ -108,11 +108,13 @@ class BorrowController extends Controller
             return abort(403);
         }
 
+        //error_log(print_r($borrow, TRUE));
+
         return view('borrow.show', [
             'borrow' => $borrow,
             'book' => $borrow->book,
             'reader' => $borrow->reader,
-            'expired' => $borrow['status'] == 'ACCEPTED' && $borrow['deadline'] < time(),
+            'expired' => $borrow['status'] == 'ACCEPTED' && ($borrow['deadline']) ? false : $borrow['deadline'] < time(),
             'user' => $user,
             'init' => function($name) use ($borrow) {
                 return $borrow[$name];
