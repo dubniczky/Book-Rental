@@ -1,1 +1,5 @@
+# Force auto LF normalization
+* text=auto
+
+# Force LF for shell files
 *.sh text eol=lf
