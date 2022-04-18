@@ -59,3 +59,17 @@ php artisan serve
 > Note: the port should be visible after running step 5.
 
 [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+## Useful commands
+
+### Create a new model with all components
+
+```bash
+php artisan make:model MODELNAME -a
+```
+
+### Quick reset database
+
+```bash
+./dbreset.sh
+```
