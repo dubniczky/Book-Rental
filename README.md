@@ -19,5 +19,6 @@ https://canvas.elte.hu/courses/26434/assignments/182805
 ## Scripts
 
 - Install php and composer: `install.sh`
+- Generate Laravel project from scratch: `initialize.sh`
 - Install dependencies and seed database: `prepare.sh`
 - Reset database: `dbreset.sh`
