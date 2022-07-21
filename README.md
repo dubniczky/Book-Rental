@@ -1,6 +1,6 @@
 # Laravel Book Rental System
 
-This is a sample project showcasing a simple book rental system in PHP Laravel.
+Book rental system in Laravel with blade templating and sqlite.
 
 ## Support ❤️
 
@@ -10,7 +10,7 @@ If you find the project useful, please consider supporting, or contributing.
 
 ## Description
 
-This project starts from a basic laravel template and implements users, book, genres and borrowing using Illuminate models and creates tables in a sqlite database with migrations. The database is seeded using model factories and seeders. The users have two main roles, reader and librarian, with their own permissions.
+This project starts from a basic laravel template and implements users, book, genres and borrowing using Eloquent models and creates tables in a sqlite database with migrations. The database is seeded using model factories and seeders. The users have two main roles, reader and librarian, with their own permissions. Each registered user can borrow books, but a librarian has to approve the it, and also may chose to reject it.
 
 The UI is generated using blade templates and styled with Bootstrap 5. Generating the web ui package requires installation of node packages and running install afterwards.
 
