@@ -2,7 +2,11 @@
 
 This is a sample project showcasing a simple book rental system in PHP Laravel.
 
-[[_TOC_]]
+## Support ❤️
+
+If you find the project useful, please consider supporting, or contributing.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dubniczky)
 
 ## Description
 
