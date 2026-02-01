@@ -2,12 +2,6 @@
 
 Book rental system in Laravel with blade templating and sqlite.
 
-## Support ❤️
-
-If you find the project useful, please consider supporting, or contributing.
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dubniczky)
-
 ## Description
 
 This project starts from a basic laravel template and implements users, book, genres and borrowing using Eloquent models and creates tables in a sqlite database with migrations. The database is seeded using model factories and seeders. The users have two main roles, reader and librarian, with their own permissions. Each registered user can borrow books, but a librarian has to approve the it, and also may chose to reject it.
